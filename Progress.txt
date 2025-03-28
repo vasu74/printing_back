@@ -1,0 +1,22 @@
+27 march 
+role and permission creation 
+create role and permisison mapping 
+fetch permission whole information by roleId 
+
+
+28 march 
+tenants creation 
+get all tenants without password + role_name
+create login route with returning token jwt 
+also saving  hash password 
+
+29 MARCH (prespective to tenants)
+client additon (create and fetch only no login)
+creating user gaving them a role 
+
+
+30 march 
+now working on adding products 
+pricing calculation 
+pricing-template imtroduction 
+
