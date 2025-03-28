@@ -9,6 +9,7 @@ tenants creation
 get all tenants without password + role_name
 create login route with returning token jwt 
 also saving  hash password 
+now creating organization from where we can gave tenantsId, roleId Array 
 
 29 MARCH (prespective to tenants)
 client additon (create and fetch only no login)
@@ -19,4 +20,6 @@ creating user gaving them a role
 now working on adding products 
 pricing calculation 
 pricing-template imtroduction 
+
+
 

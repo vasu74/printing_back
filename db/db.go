@@ -214,4 +214,33 @@ func createTables() {
 	}
 	fmt.Println("pricing formula table is ready!")
 
+	// organizations
+	organizationtableQuery := `
+	CREATE TABLE IF NOT EXISTS organization (
+	id SERIAL PRIMARY KEY, 
+	name VARCHAR(100) NOT NULL,
+	tenant_id INT REFERENCES tenants(id) ON DELETE CASCADE,
+	address VARCHAR(100) NOT NULL,
+	gstno VARCHAR(20)
+	)`
+
+	_, err = DB.Exec(organizationtableQuery)
+	if err != nil {
+		log.Fatalf("Error creating Organization table: %v", err)
+	}
+	fmt.Println("Organization table is ready!")
+
+	roleOrganizationTableQuery := `
+	CREATE TABLE IF NOT EXISTS roleOrganization (
+		role_id INT REFERENCES roles(id) ON DELETE CASCADE,
+	    organization_id INT REFERENCES organization(id) ON DELETE CASCADE,
+		PRIMARY KEY (role_id, organization_id)
+	);
+	`
+	_, err = DB.Exec(roleOrganizationTableQuery)
+	if err != nil {
+		log.Fatalf("Error creating roleOrganization table: %v", err)
+	}
+	fmt.Println("roleOrganization table is ready!")
+
 }

@@ -146,3 +146,17 @@ func GetPermissionsByRole(roleID int64) (*FetchPermission, error) {
 
 	return &fetchPermission, nil
 }
+
+// ValidateRoles checks whether all provided role IDs exist in the database
+func ValidateRoles(roleIDs []int64) error {
+	for _, roleID := range roleIDs {
+		exists, err := RoleExists(roleID)
+		if err != nil {
+			return err
+		}
+		if !exists {
+			return errors.New("one or more role IDs are invalid")
+		}
+	}
+	return nil
+}

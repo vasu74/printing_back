@@ -25,4 +25,7 @@ func RegisterRoutes(server *gin.Engine) {
 	server.POST("/addproduct", CreateProducts)
 	server.POST("/calculateprice", CalculatePriceHandler)
 
+	// create organization
+	server.POST("/createOrganization", CreateOrganization)
+
 }
