@@ -113,8 +113,11 @@ func MapPermissionToRole(roleID, permissionID int64) error {
 	return err
 }
 
+//	true : []string
+//
+// false : FetchPermission
 // GetPermissionsByRole fetches all permissions associated with a role
-func GetPermissionsByRole(roleID int64) (*FetchPermission, error) {
+func GetPermissionsByRole(roleID int64, onlyNames bool) (interface{}, error) {
 	query := `
 		SELECT p.id, p.name 
 		FROM permissions p
@@ -128,6 +131,23 @@ func GetPermissionsByRole(roleID int64) (*FetchPermission, error) {
 	}
 	defer rows.Close()
 
+	if onlyNames {
+		var permissions []string
+		for rows.Next() {
+			var name string
+			if err := rows.Scan(new(int64), &name); err != nil { // Ignore ID when fetching names
+				return nil, err
+			}
+			permissions = append(permissions, name)
+		}
+
+		if len(permissions) == 0 {
+			return nil, errors.New("no permissions found for the given role")
+		}
+
+		return permissions, nil
+	}
+
 	var fetchPermission FetchPermission
 	fetchPermission.RoleID = roleID
 
@@ -139,7 +159,6 @@ func GetPermissionsByRole(roleID int64) (*FetchPermission, error) {
 		fetchPermission.Permissions = append(fetchPermission.Permissions, perm)
 	}
 
-	// Check if no permissions found
 	if len(fetchPermission.Permissions) == 0 {
 		return nil, errors.New("no permissions found for the given role")
 	}

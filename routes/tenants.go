@@ -60,6 +60,10 @@ func login(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Login Successfully", "token": token})
+		"message":     "Login Successfully",
+		"token":       token,
+		"roleId":      tenant.RoleID,
+		"permissions": tenant.Permissions,
+	})
 
 }

@@ -100,7 +100,7 @@ func singleRolePermisssion(c *gin.Context) {
 		return
 	}
 
-	role, err := models.GetPermissionsByRole(roleId)
+	role, err := models.GetPermissionsByRole(roleId, false)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "error retrieving role details"})
 		return
