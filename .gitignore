@@ -1,0 +1,7 @@
+# dependencies
+/node_modules
+
+# sensitive info
+frontend/.env
+backend/.env
+
