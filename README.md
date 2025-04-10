@@ -1,4 +1,5 @@
-
+# Design File
+[Figma Design](https://www.figma.com/design/t6N4DvFFpUYZiXhprONEfB/Deepak-Product-genie?node-id=0-1&t=XJgyRXcN0egoroKs-1)
 
 # Product Genie for Printing Shops
 
